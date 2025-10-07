@@ -3,18 +3,19 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Navbar from './components/Navbar'
-import TextForm from './components/textform'
-// import About from './components/About'
+import TextForm from './components/TextForm'
+import About from './components/About'
 import Alert from './components/alert'
 
 
 
-// import {
-//   BrowserRouter as Router,
-//   Routes,
-//   Route,
-  
-// } from "react-router-dom";
+
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
 
 
 
@@ -37,7 +38,7 @@ const toggleMode = () =>{
     document.body.style.backgroundColor = '#212529'
     showAlert(' Dark Mode has been enabled' , 'success')
 
-    document.title = 'Text Utils - Dark Mode'
+    // document.title = 'Text Utils - Dark Mode'
 
 
   }
@@ -45,26 +46,33 @@ const toggleMode = () =>{
     setMode('light')
     document.body.style.backgroundColor = 'white'
     showAlert(' Light Mode has been enabled' , 'success')
-    document.title = 'Text Utils - Light Mode'
+    // document.title = 'Text Utils - Light Mode'
   }
 }
   return (
    <>
-   {/* <Router> */}
+   <Router basename="/TextUtils">
 
 
 <Navbar title = "TextUtils" about = "aboutTextUtils" mode={mode} toggleMode={toggleMode}/>
 <Alert alert={alert}/>
 <div className="container my-3">
-        {/* <Routes> */}
-          {/* <Route exact path="/" element={ */}
-            <TextForm heading="Enter the text to analyze below" mode={mode} showAlert={showAlert} />
-            
-            {/* } /> */}
-          {/* <Route exact path="/about" element={<About />} /> */}
-        {/* </Routes> */}
+      <Routes>
+
+ <Route 
+  path="/" 
+  element={<TextForm heading="Try TextUtils- Word Counter , Character Counter, LowerCase to UpperCase , UpperCase to Lowercase" mode={mode} showAlert={showAlert} />} 
+/>
+<Route 
+  path="/about" 
+  element={<About mode={mode} />} 
+/>
+
+</Routes>
+
+        
       </div>
-    {/* </Router> */}
+    </Router> 
 
 
  </>
